@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cirrus Intelligence | Enterprise Code Audit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #0052FF;
+            --bg-surface: #fdfdfd;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-surface);
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.015em;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Premium Print Layout for PDFs */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; padding: 0 !important; }
+            .print-full { width: 100% !important; margin: 0 !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+            .report-container { border: none !important; padding: 0 !important; box-shadow: none !important; }
+            .prose { max-width: 100% !important; font-size: 11pt !important; }
+            @page { margin: 2cm; }
+        }
+
+        /* High-End Technical Document Styles */
+        .prose h1 { font-weight: 800; letter-spacing: -0.04em; color: #000; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; }
+        .prose h2 { font-weight: 700; color: #1e293b; margin-top: 3rem !important; border-left: 4px solid #0052FF; padding-left: 1rem; }
+        .prose p { line-height: 1.8; color: #475569; }
+        .prose strong { color: #000; }
+        
+        /* The Link Styles for Validity Checks */
+        .prose a { 
+            color: #0052FF !important; 
+            text-decoration: underline !important; 
+            text-underline-offset: 4px; 
+            font-weight: 600; 
+            transition: opacity 0.2s;
+        }
+        .prose a:hover { opacity: 0.7; }
+        
+        .prose pre { border: 1px solid #e2e8f0; background: #f8fafc !important; border-radius: 1rem !important; padding: 1.5rem !important; }
+        .prose code { color: #0052FF !important; font-weight: 700 !important; background: transparent !important; }
+        .prose code::before, .prose code::after { content: "" !important; }
+        
+        .report-container {
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "jszip": "https://esm.sh/jszip@^3.10.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
