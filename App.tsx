@@ -145,7 +145,7 @@ const App: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold tracking-tight">Documentation</h3>
-                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Grounded Bibliograpy</p>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Grounded Bibliography</p>
                   </div>
                 </div>
 
