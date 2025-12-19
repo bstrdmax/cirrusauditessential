@@ -1,4 +1,3 @@
-
 import { useState, useCallback } from 'react';
 import JSZip from 'jszip';
 import { CodeFile, GroundingSource } from '../types';
@@ -78,12 +77,18 @@ export const useAudit = () => {
       const response = await fetch('/.netlify/functions/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: context })
+        body: JSON.stringify({ 
+          model: 'gemini-3-flash-preview',
+          contents: context,
+          config: {
+            temperature: 0.1
+          }
+        })
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Internal Server Error during Audit.");
+        throw new Error(errorData.error || "Server function failed to return data.");
       }
 
       const data = await response.json();
