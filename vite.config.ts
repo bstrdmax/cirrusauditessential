@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    // Ensure we don't accidentally embed env vars during build
-    minify: 'terser',
+    // Use esbuild which is bundled with Vite, instead of terser which requires a separate install
+    minify: 'esbuild',
   },
   server: {
     proxy: {
