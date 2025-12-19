@@ -1,3 +1,4 @@
+
 import { GoogleGenAI } from "@google/genai";
 
 const AUDIT_SYSTEM_INSTRUCTION = `You are the Cirrus Lead Intelligence Auditor. Your objective is to perform a high-fidelity "Essentialist Audit" for enterprise codebases.
@@ -18,7 +19,7 @@ Every single change must be justified by a linked source. Logic without a source
 
 export const handler = async (event: any, context: any) => {
   try {
-    // Parse the incoming request
+    // Parse the incoming request as requested in your pattern
     const { model, contents, config } = JSON.parse(event.body || '{}');
     
     if (!contents) {
@@ -29,7 +30,7 @@ export const handler = async (event: any, context: any) => {
       };
     }
 
-    // Get API key from environment as requested
+    // Get API key from environment (specifically using GOOGLE_AI_API_KEY as requested)
     const apiKey = process.env.GOOGLE_AI_API_KEY;
     
     if (!apiKey) {
@@ -44,7 +45,7 @@ export const handler = async (event: any, context: any) => {
     // Initialize Google AI
     const ai = new GoogleGenAI({ apiKey });
     
-    // Make the API call with the provided parameters and forced Audit instructions
+    // Make the API call using the specific properties from the request body
     const response = await ai.models.generateContent({
       model: model || 'gemini-3-flash-preview',
       contents: Array.isArray(contents) ? contents : [{ parts: [{ text: contents }] }],
@@ -56,7 +57,7 @@ export const handler = async (event: any, context: any) => {
       }
     });
 
-    // Extract grounding sources for the frontend bibliography
+    // Extract grounding sources for the frontend documentation panel
     const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
     const extractedSources = groundingChunks
       .filter((chunk: any) => chunk.web)
@@ -65,7 +66,7 @@ export const handler = async (event: any, context: any) => {
         uri: chunk.web.uri
       }));
     
-    // Return the response in the requested format
+    // Return the response following the exact requested body structure
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -79,7 +80,6 @@ export const handler = async (event: any, context: any) => {
   } catch (error: any) {
     console.error("AI Function Error:", error);
     
-    // Improved error messaging based on the requested pattern
     let errorMessage = error.message || "Unknown error";
     let statusCode = 500;
     
