@@ -17,7 +17,7 @@ export const handler = async (event: any) => {
     }
 
     // Initialize Google AI with the secure server-side environment variable
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     
     // Using gemini-3-flash-preview for maximum speed without sacrificing reasoning depth
     const response = await ai.models.generateContent({
